@@ -8,21 +8,19 @@ import { createStore } from 'redux';
 
 const reducer = (state = 0, action) => {
 
-  if(action.type === "plus") {
-    return state + 1;
-  } 
-  
-  if (action.type === "minus") {
-    if(state !== 0) {
-    return state - 1;
-    }
-  }
+  switch(action.type) {
+    case "plus":
+      return state + 1;
 
-  if (action.type === "reset") {
-    return 0;
-  }
+    case "minus":
+      return state !== 0 ? state - 1 : 0;
 
-  return state;
+    case "reset":
+      return 0;
+
+    default:
+      return state;
+  }
 }
 
 

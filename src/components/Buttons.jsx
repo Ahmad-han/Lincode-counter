@@ -1,29 +1,23 @@
 import { useDispatch } from "react-redux"
+import { PlusOne, MinusOne, Reset } from "../Actions"
 
 
 
 
 export const Buttons = () => {
 
-const dispatch = useDispatch()
-
+const dispatch = useDispatch();
 
 const handlePlus = () => {
-    dispatch( {
-        type: "plus"
-    } )
+    dispatch( PlusOne() )
 }
 
 const handleMinus = () => {
-    dispatch( {
-       type: "minus"
-    } )
+    dispatch( MinusOne() )
 }
 
 const handleReset = () => {
-    dispatch( {
-        type: "reset"
-    } )
+    dispatch( Reset() )
 }
 
     return (
