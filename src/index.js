@@ -5,8 +5,9 @@ import {App} from './App';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
+const initialState = 0;
 
-const reducer = (state = 0, action) => {
+const reducer = (state = initialState, action) => {
 
   switch(action.type) {
     case "plus":
@@ -23,8 +24,13 @@ const reducer = (state = 0, action) => {
   }
 }
 
+const preloadedState = JSON.parse(localStorage.getItem("counter"))
 
-const store = createStore(reducer)
+const store = createStore(reducer, preloadedState ? preloadedState : initialState)
+
+store.subscribe(() => {
+  localStorage.setItem("counter", store.getState())
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
